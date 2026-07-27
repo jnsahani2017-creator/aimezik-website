@@ -12,12 +12,12 @@
       config: {
         backend: {
           name: 'github',
-          repo: 'YOUR-USERNAME/aimezik-website',
+          repo: 'jnsahani2017-creator/aimezik-website',
           branch: 'main'
         },
         media_folder: 'public/images',
         public_folder: '/images',
-        display_url: 'https://aimezik.com',
+        display_url: 'https://jnsahani2017-creator.github.io/aimezik-website',
         collections: [
           {
             name: 'prompts',
@@ -30,9 +30,7 @@
               { label: 'Thumbnail', name: 'thumbnail', widget: 'image' },
               { label: 'YouTube Link', name: 'youtube', widget: 'string' },
               { label: 'Prompt', name: 'prompt', widget: 'text' },
-              { label: 'Category', name: 'category', widget: 'select', options: ['Bhakti', 'Cartoon', 'News', 'Bollywood', 'Reels', 'Education', 'Horror', 'Technology', 'Motivational', 'Business', 'Nature', 'Animals', 'History'] },
-              { label: 'Tags', name: 'tags', widget: 'list', default: [] },
-              { label: 'Featured', name: 'featured', widget: 'boolean', default: false }
+              { label: 'Category', name: 'category', widget: 'select', options: ['Bhakti', 'Cartoon', 'News', 'Bollywood', 'Reels', 'Education', 'Horror', 'Technology', 'Motivational', 'Business', 'Nature', 'Animals', 'History'] }
             ]
           },
           {
@@ -45,9 +43,7 @@
               { label: 'Title', name: 'title', widget: 'string' },
               { label: 'Content', name: 'body', widget: 'markdown' },
               { label: 'Thumbnail', name: 'thumbnail', widget: 'image' },
-              { label: 'Category', name: 'category', widget: 'select', options: ['AI News', 'CSC Updates', 'Technology', 'Government Updates', 'Digital Marketing', 'Online Earning', 'AI Tips'] },
-              { label: 'Tags', name: 'tags', widget: 'list', default: [] },
-              { label: 'Featured', name: 'featured', widget: 'boolean', default: false }
+              { label: 'Category', name: 'category', widget: 'select', options: ['AI News', 'CSC Updates', 'Technology', 'Government Updates', 'Digital Marketing', 'Online Earning', 'AI Tips'] }
             ]
           }
         ]
