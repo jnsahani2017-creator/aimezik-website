@@ -1,1 +1,24 @@
+---
+export interface Props {
+  title: string;
+  slug: string;
+  thumbnail: string;
+  category: string;
+  featured?: boolean;
+}
 
+const { title, slug, thumbnail, category, featured } = Astro.props;
+---
+
+<a href={`/prompts/${slug}`} class="group block bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-all hover:-translate-y-1 overflow-hidden">
+  <div class="relative">
+    <img src={thumbnail} alt={title} class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+    {featured && (
+      <span class="absolute top-2 right-2 bg-primary-600 text-white text-xs font-bold px-3 py-1 rounded-full">Featured</span>
+    )}
+  </div>
+  <div class="p-4">
+    <span class="text-xs text-primary-600 dark:text-primary-400 font-semibold uppercase">{category}</span>
+    <h3 class="mt-1 text-lg font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2">{title}</h3>
+  </div>
+</a>
