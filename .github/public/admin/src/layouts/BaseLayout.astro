@@ -1,1 +1,27 @@
+---
+import { ViewTransitions } from 'astro:transitions';
 
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <ViewTransitions />
+    <title>{title ? `${title} | AIMEZIK` : 'AIMEZIK - AI Video Learning'}</title>
+    <meta name="description" content={description || 'Learn AI video creation with AIMEZIK'} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
+    <main class="min-h-screen pt-16">
+      <slot />
+    </main>
+  </body>
+</html>
