@@ -1,17 +1,54 @@
-<script>
-  CMS.init({
-    config: {
-      backend: {
-        name: 'github',
-        repo: 'jnsahani2017-creator/aimezik-website',
-        branch: 'main'
-      },
-      media_folder: 'public/images',
-      public_folder: '/images',
-      display_url: 'https://jnsahani2017-creator.github.io/aimezik-website',
-      collections: [
-        // ... आपके कलेक्शन
-      ]
-    }
-  });
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIMEZIK CMS</title>
+</head>
+<body>
+  <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
+  <script>
+    CMS.init({
+      config: {
+        backend: {
+          name: 'github',
+          repo: 'jnsahani2017-creator/aimezik-website',
+          branch: 'main'
+        },
+        media_folder: 'public/images',
+        public_folder: '/images',
+        display_url: 'https://jnsahani2017-creator.github.io/aimezik-website',
+        collections: [
+          {
+            name: 'prompts',
+            label: 'AI Prompts',
+            folder: 'src/content/prompts',
+            create: true,
+            slug: '{{slug}}',
+            fields: [
+              { label: 'Title', name: 'title', widget: 'string' },
+              { label: 'Thumbnail', name: 'thumbnail', widget: 'image' },
+              { label: 'YouTube Link', name: 'youtube', widget: 'string' },
+              { label: 'Prompt', name: 'prompt', widget: 'text' },
+              { label: 'Category', name: 'category', widget: 'select', options: ['Bhakti', 'Cartoon', 'News', 'Bollywood', 'Reels', 'Education', 'Horror', 'Technology', 'Motivational', 'Business', 'Nature', 'Animals', 'History'] }
+            ]
+          },
+          {
+            name: 'blog',
+            label: 'Blog',
+            folder: 'src/content/blog',
+            create: true,
+            slug: '{{slug}}',
+            fields: [
+              { label: 'Title', name: 'title', widget: 'string' },
+              { label: 'Content', name: 'body', widget: 'markdown' },
+              { label: 'Thumbnail', name: 'thumbnail', widget: 'image' },
+              { label: 'Category', name: 'category', widget: 'select', options: ['AI News', 'CSC Updates', 'Technology', 'Government Updates', 'Digital Marketing', 'Online Earning', 'AI Tips'] }
+            ]
+          }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
