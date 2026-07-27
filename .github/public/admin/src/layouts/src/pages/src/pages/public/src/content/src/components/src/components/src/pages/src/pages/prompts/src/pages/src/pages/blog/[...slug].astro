@@ -1,1 +1,30 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
 
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(p => ({
+    params: { slug: p.slug },
+    props: { post: p }
+  }));
+}
+
+const { post } = Astro.props;
+const { data } = post;
+---
+
+<BaseLayout title={data.title}>
+  <div class="max-w-4xl mx-auto px-4 py-8 md:py-12">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+      <img src={data.thumbnail} alt={data.title} class="w-full aspect-video object-cover" />
+      <div class="p-6">
+        <span class="text-sm text-primary-600 dark:text-primary-400 font-semibold uppercase">{data.category}</span>
+        <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white mt-2">{data.title}</h1>
+        <div class="prose prose-lg dark:prose-invert max-w-none mt-4">
+          {data.body}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
