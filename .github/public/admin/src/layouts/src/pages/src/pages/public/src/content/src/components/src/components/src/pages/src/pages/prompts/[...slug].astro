@@ -1,1 +1,39 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import YouTubeEmbed from '@components/YouTubeEmbed.astro';
+import { getCollection } from 'astro:content';
 
+export async function getStaticPaths() {
+  const prompts = await getCollection('prompts');
+  return prompts.map(p => ({
+    params: { slug: p.slug },
+    props: { prompt: p }
+  }));
+}
+
+const { prompt } = Astro.props;
+const { data } = prompt;
+---
+
+<BaseLayout title={data.title}>
+  <div class="max-w-4xl mx-auto px-4 py-8 md:py-12">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+      <YouTubeEmbed url={data.youtube} title={data.title} />
+      <div class="p-6">
+        <span class="text-sm text-primary-600 dark:text-primary-400 font-semibold uppercase">{data.category}</span>
+        <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white mt-2">{data.title}</h1>
+        
+        <div class="mt-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <p class="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{data.prompt}</p>
+        </div>
+        
+        <button 
+          onclick="navigator.clipboard.writeText(` + '`' + data.prompt + '`' + `)"
+          class="mt-4 px-6 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
+        >
+          📋 Copy Prompt
+        </button>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
